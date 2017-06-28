@@ -1,0 +1,45 @@
+﻿@model Task.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+    div {
+    font-size:x-large
+    }
+</style>
+<div class="container">
+<h1>User Data</h1>
+
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName) : @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastName) : @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email) : @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Mobile) : @Html.DisplayFor(model => model.Mobile)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Password) : @Html.DisplayFor(model => model.Password)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.JobDescription) : @Html.DisplayFor(model => model.JobDescription)
+    </div>
+     <br />
+    <br />
+     <br />
+    @Html.ActionLink("Return Back", "all",null, new { @class ="btn btn-danger"})
+        <br />
+      <br />
+     <br />
+    </div>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Task.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    tr, td, th {
+    margin:15px;
+    padding:15px;
+    height:100px;
+    }
+</style>
+<div class="container">
+<h2>Users Of System</h2>
+    <hr />
+<p>
+    @Html.ActionLink("New User", "Create","User",null, new { @class ="btn btn-warning"})
+</p>
+    <br />
+<table class="table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_type)
+        </th>
+        <th>Controls</th>
+    </tr>
+
+@foreach (var item in Model) {
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @if(item.Photo != null){
+         <img class="img-thumbnail" width="150" height="150" src="@item.Photo" />
+            }
+            else{
+            <span>No Photo</span>
+            }  
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobDescription)
+        </td>
+        <td>
+            @if (item.user_type == 2){
+                <p>
+                    Market Directory
+                </p>
+            }
+             
+           else if (item.user_type == 3){
+                <p>
+                    Market Team Leader
+                </p>
+            }
+           else if (item.user_type == 4){
+                <p>
+                    Market Team Trainee
+                </p>
+            }
+            
+           else if (item.user_type == 5){
+                <p>
+                    Customer
+                </p>
+            }   
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.ID }, new {@class="btn" })
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new {@class="btn" })
+        </td>
+    </tr>
+}
+
+</table>
+    <br />
+    <br />
+     <br />
+    @Html.ActionLink("Return Back", "Index",null, new { @class ="btn btn-danger"})
+        <br />
+    <br />
+     <br />
+    </div>

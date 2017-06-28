@@ -1,0 +1,83 @@
+﻿@model Task.Models.User
+
+@{
+    ViewBag.Title = "Update";
+}
+<div class="container">
+
+<h2>Update Profile</h2>
+
+    <br />
+    <br />
+  @if (TempData["notice"] != null) {
+  <p>@TempData["notice"]</p>
+}
+@using (Html.BeginForm(null,null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.ID)
+
+ 
+    <div class="col-md-6 form-line">
+<div class="form-group">
+    <h4>First Name :</h4>
+<input type="text" class="form-control" name="FirstName" value="@Model.FirstName" />
+</div>
+</div>
+    
+<div class="col-md-6">
+<div class="form-group">   <h4>Last Name :</h4>
+<input type="text" class="form-control" name="LastName" value="@Model.LastName" />
+</div>
+</div>
+    
+<div class="col-md-6 form-line">
+<div class="form-group">   <h4>Email :</h4>
+<input type="text" class="form-control" name="Email" value="@Model.Email" />
+</div>
+</div>
+ 
+<div class="col-md-6">
+<div class="form-group">    <h4>Password :</h4>
+<input type="text" class="form-control" name="Password" value="@Model.Password" />
+</div>
+</div>  
+     
+<div class="col-md-12">
+<div class="form-group">   <h4>Mobile :</h4>
+<input type="text" class="form-control" name="Mobile" value="@Model.Mobile" />
+</div>
+</div>
+<div class="col-md-12">
+<div class="form-group">   <h4>Job Description :</h4>
+<input type="text" class="form-control" name="JobDescription" value="@Model.JobDescription" />
+</div>
+</div> 
+        
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Photo)
+        </div>
+<div class="col-md-4">
+<div class="form-group">
+             <input type="file" title="search" name="file" />
+        </div>
+    </div>
+        <div class="editor-field">
+            @Html.HiddenFor(m=>m.user_type,new{user_id=Model.user_type})
+            @*Html.TextBoxFor(Model => Model.user_id)*@
+        </div>
+<br /><br /><br />
+         <div class="col-md-6 form-line">
+    <input type="submit" value="Save Updates" class="btn btn-primary" />
+
+</div> 
+}
+    <a href="javascript:void(0);" onclick="history.go(-2);" class="btn btn-info" style="margin-left:40px;"> Return Back </a>
+    </div>
+<br /><br /><br /><br />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

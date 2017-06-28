@@ -1,0 +1,78 @@
+﻿@model Task.Models.User
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="container">
+<h2>Register</h2>
+    <br />
+    <br />
+    @if (TempData["notice"] != null) {
+  <p>@TempData["notice"]</p>
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+<div class="col-md-6 form-line">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Enter First Name" name="FirstName" required>
+</div>
+</div>
+    
+<div class="col-md-6">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Enter Last Name" name="LastName" required>
+</div>
+</div>
+    
+<div class="col-md-6 form-line">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Enter Email" name="Email" required>
+</div>
+</div>
+ 
+<div class="col-md-6">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Enter Password" name="Password" required>
+</div>
+</div>  
+     
+<div class="col-md-12">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Enter Mobile" name="Mobile" required>
+</div>
+</div>
+<div class="col-md-12">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Enter Job Description" name="JobDescription" required>
+</div>
+</div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.user_type)
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model => model.user_type,2) Market Director
+            <br />
+            @Html.RadioButtonFor(model => model.user_type,3) Market Team Leader
+            <br />
+            @Html.RadioButtonFor(model => model.user_type,4) Market Trainee
+            <br />
+            @Html.RadioButtonFor(model => model.user_type,5) Customer
+            <br />
+            @Html.ValidationMessageFor(model => model.user_type)
+        </div>
+
+        <p>
+            <input type="submit" value="Register"  class="btn btn-primary submit" style="color:#000"/>
+        </p>
+}
+
+    
+    <a href="javascript:void(0);" onclick="history.go(-2);" class="btn btn-info" style="margin-left:40px;"> Return Back </a>
+</div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

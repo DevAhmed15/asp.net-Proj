@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Task.Models.Team>
+
+@{
+    ViewBag.Title = "listA";
+}
+<style>
+    tr, td, th {
+    margin:30px;
+    padding:30px;
+    height:100px;
+    }
+</style>
+<div class="container">
+<table class="table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Trainee_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MD_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proj_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MTL_id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Trainee_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MD_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proj_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsApproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MTL_id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit","team", new { id=item.ID }) 
+        </td>
+    </tr>
+}
+
+</table>
+</div>

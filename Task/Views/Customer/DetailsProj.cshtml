@@ -1,0 +1,49 @@
+﻿@model Task.Models.Project
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    .display-label {
+    border:1px solid #0094ff;
+    padding:10px;
+    margin:10px
+    }
+</style>
+<div class="container">
+<h2>Project Details</h2>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title) : @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description) : @Html.DisplayFor(model => model.Description)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.price) : @Html.DisplayFor(model => model.price)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DeadLine) : @Html.DisplayFor(model => model.DeadLine)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Status) :
+            @if(Model.Status == 0 ){
+            <p>On Progress</p>
+            }
+           @if(Model.Status == 1){
+           <p>Delivered</p>
+           }
+    </div>
+    
+    <div class="display-label">
+        Customer ID : @Html.DisplayFor(model => model.User.ID) 
+        </div>
+    <div class="display-label">
+        Customer Name : @Html.DisplayFor(model => model.User.FirstName)  @Html.DisplayFor(model => model.User.LastName)
+    </div>
+<p>
+    <br /><br /><br />
+    <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-info"> Return Back </a>
+</p>
+    </div>

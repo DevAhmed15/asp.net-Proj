@@ -1,0 +1,52 @@
+﻿@model Task.Models.Project
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="container">
+
+<h2>Update Project</h2>
+
+    <br />
+    <br />
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.ID)
+
+     <div class="col-md-6">
+<div class="form-group">
+<input type="text" class="form-control" value="@Model.Title" name="Title">
+</div>
+</div>
+
+ 
+<div class="col-md-12">
+<div class="form-group">
+<input type="text" class="form-control" value="@Model.Description" name="Description" style="width:1000px;height:200px;">
+</div>
+</div> 
+
+        <div class="editor-field">
+            <input name="Status" type="hidden" value="@Model.Status" />
+        </div>
+        <div class="editor-field">
+            <input name="user_id" type="hidden" value="@Model.user_id" />
+        </div>
+        <div class="editor-field">
+            <input name="price" type="hidden" value="@Model.price" />
+        </div>
+
+        <p>
+            <input type="submit" class="btn btn-success" value="Save Updates" />
+        </p>
+}
+
+    <br /><br /><br />
+    <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-info"> Return Back </a>
+    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

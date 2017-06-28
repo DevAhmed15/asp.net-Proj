@@ -1,0 +1,70 @@
+﻿@model Task.Models.Project
+
+@{
+    ViewBag.Title = "Edit";
+}
+<style>
+    .form-group {
+    
+    font-size:larger
+
+    }
+</style>
+<div class="container">
+
+<h2>Update Project</h2>
+
+    <br />
+    <br />
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.ID)
+
+<div class="col-md-12">
+<div class="form-group">
+    <h4>Title :</h4>
+<input type="text" class="form-control" name="Title" value="@Model.Title" />
+</div>
+</div> 
+
+<div class="col-md-12">
+<div class="form-group"> <h4>Description :</h4>
+<input type="text" class="form-control" value="@Model.Description" name="Description" style="width:1000px;height:200px;">
+</div>
+</div> 
+    <div class="col-md-12">
+<div class="form-group"> <h4>Status :</h4>
+            @Html.RadioButtonFor(model => model.Status,0) on progress
+            <br />
+            @Html.RadioButtonFor(model => model.Status,1) Delivered
+            <br />
+</div>
+</div> 
+        <div class="editor-field">
+            <input type="hidden" name="user_id" value="@Model.user_id" />
+            @Html.ValidationMessageFor(model => model.user_id)
+        </div>
+
+        <div class="col-md-12">
+<div class="form-group"> <h4>Price :</h4>
+<input type="text" class="form-control" name="price" value="@Model.price" />
+</div>
+</div>
+ <div class="col-md-12">
+<div class="form-group">
+    <h4>DeadLine :</h4>
+<input type="date" class="form-control" name="DeadLine" value="@Model.DeadLine" />
+</div>
+</div>
+            <input type="submit" class="btn btn-primary" value="Save Updates" />
+}
+
+<br />
+    @Html.ActionLink("Back to Projects", "listProj", null, new { @class="btn btn-info" })
+        </div>
+<br /><br /><br />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

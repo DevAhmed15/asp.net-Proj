@@ -1,0 +1,63 @@
+﻿@model Task.Models.Project
+
+
+@{
+    ViewBag.Title = "addProj";
+}
+<div class="container">
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+     <div class="col-md-6">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Enter Title For Your Project" name="Title">
+</div>
+</div>
+
+ 
+<div class="col-md-12">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Description For Your Project ..." name="Description" style="width:1000px;height:200px;">
+</div>
+</div> 
+            <div class="editor-field">
+            @Html.HiddenFor(m=>m.user_id,new{id=Model.ID})
+            @*Html.TextBoxFor(Model => Model.user_id)*@
+        </div>
+    
+        <div class="editor-field">
+            @if (ViewBag.user_md != null)
+            {
+@Html.DropDownListFor(model => model.MD_ID,
+   (SelectList)ViewBag.user_md," Available Market Directors",
+    new { @class = "form-control" })
+            }
+            @Html.ValidationMessageFor(model => model.MD_ID)
+        </div>
+
+            <div class="editor-field">
+           @Html.HiddenFor(m=>m.Status,new{Status=0})
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+
+<input type="submit" value="ADD"  class="btn btn-info submit" style="color:#000"/>
+    <br />
+    <br />    <br />
+    <br />
+}
+<div class="col-md-3">
+<div class="form-group">
+    @Html.ActionLink("Back to Control", "Index",null, new { @class ="btn btn-warning"})
+</div>
+</div> 
+      </div>
+  
+<br /><br /><br /><br />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

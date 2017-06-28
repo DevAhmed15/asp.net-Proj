@@ -1,0 +1,83 @@
+﻿@model Task.Models.Team
+
+@{
+    ViewBag.Title = "Create";
+}
+<style>
+    .editor-label {
+    font-size:x-large
+    }
+</style>
+
+<div class="container">
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+            <div class="editor-label">
+            @Html.LabelFor(model => model.TeamName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TeamName)
+            </div>
+        <div class="editor-label">
+            Available Trainees
+        </div>
+        <div class="editor-field">
+           @if (ViewBag.user_trainee != null)
+           {
+@Html.DropDownListFor(model => model.Trainee_id,
+   (SelectList)ViewBag.user_trainee, String.Empty,
+    new { @class = "form-control" })
+           }
+            @Html.ValidationMessageFor(model => model.Trainee_id)
+        </div>
+    <br /><br />
+    
+        <div class="editor-label">
+            Available Projects
+        </div>
+        <div class="editor-field">
+            @if (ViewBag.proj_id != null)
+            {
+@Html.DropDownListFor(model => model.Proj_id,
+   (SelectList)ViewBag.proj_id, String.Empty,
+    new { @class = "form-control" })
+            }
+            @Html.ValidationMessageFor(model => model.Proj_id)
+        </div>
+    <br /><br />
+            <div class="editor-label">
+            Available Market Team Leaders
+        </div>
+        <div class="editor-field">
+            @if (ViewBag.user_mtl != null)
+            {
+@Html.DropDownListFor(model => model.MTL_id,
+   (SelectList)ViewBag.user_mtl, String.Empty,
+    new { @class = "form-control" })
+            }
+            @Html.ValidationMessageFor(model => model.MTL_id)
+        </div>
+    <br /><br />
+               <div class="editor-field">
+            <input type="hidden" name="MD_id" value="@ViewBag.IDW" />
+            @Html.ValidationMessageFor(model => model.IsApproved)
+        </div>
+               <div class="editor-field">
+            <input type="hidden" name="IsApproved" value="0" />
+            @Html.ValidationMessageFor(model => model.IsApproved)
+        </div>
+    <p>
+            <input type="submit" value="Create" />
+        </p>
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

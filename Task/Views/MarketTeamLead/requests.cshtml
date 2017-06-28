@@ -1,0 +1,33 @@
+﻿@model Task.Models.Team
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="container">
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.ID)
+           @Html.HiddenFor(model => model.Trainee_id)
+           @Html.HiddenFor(model => model.MD_id)
+          @Html.HiddenFor(model => model.Proj_id)
+     <input type="hidden" name="IsApproved" value="1" />
+               @Html.HiddenFor(model => model.TeamName)
+               @Html.HiddenFor(model => model.MTL_id)
+        
+          <p>
+            <input type="submit" class="btn btn-info" value="JOIN" />
+            
+    @Html.ActionLink("Cancel", "Index", null, new { @class="btn btn-info"})
+                  </p>
+
+    }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<style>
+    li {
+    color:#a53434;
+    font-size:x-large;
+    font-family:Cambria;
+    }
+    #am {
+    font-size:xx-large
+    }
+    h2 {
+    text-align:center
+    }
+</style>
+
+
+<div class="container">
+    <h1>Welcome Our Trainee</h1>
+  <h2>Your Control Panel</h2>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a id="am" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Show Controls</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+      <ul style="list-style:none">
+      <li class="list-group-item list-group-item-success">
+                </li>
+                <li class="list-group-item list-group-item-info">
+@Html.ActionLink("My Profile", "listProfile","User")
+                </li>
+                <li class="list-group-item list-group-item-warning">
+
+                </li>
+                <li class="list-group-item list-group-item-danger">
+                </li>
+
+      <li class="list-group-item list-group-item-success">
+
+                </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+    </div>
+    <span style="margin-left:1000px;">
+ @Html.ActionLink("Logout", "Index","User",new object { },new { @class = "btn btn-danger"})
+    </span>
+  </div> 
+
+<br />
+<br />
+<br />
+<br />

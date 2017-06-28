@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Task.Models.Team>
+
+@{
+    ViewBag.Title = "removeTrainees";
+}
+
+<h2>removeTrainees</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Remove Trainees", "removeTrainee", new { id = item.Proj_id })
+            </td>
+        </tr>
+    }
+
+</table>

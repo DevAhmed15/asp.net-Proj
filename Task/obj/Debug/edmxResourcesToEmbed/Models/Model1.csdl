@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Database1Entities1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Projects" EntityType="Database1Model.Project" />
+    <EntitySet Name="Teams" EntityType="Database1Model.Team" />
+    <EntitySet Name="Users" EntityType="Database1Model.User" />
+    <AssociationSet Name="FK_user_proj" Association="Database1Model.FK_user_proj">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_md" Association="Database1Model.FK_md">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Team" EntitySet="Teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trainee_team" Association="Database1Model.FK_Trainee_team">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Team" EntitySet="Teams" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Database1Model.FK_user_proj" FromRole="Project" ToRole="User" />
+    <Property Type="String" Name="price" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DeadLine" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="MD_ID" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Trainee_id" Type="Int32" Nullable="false" />
+    <Property Name="MD_id" Type="Int32" Nullable="false" />
+    <Property Name="Proj_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Database1Model.FK_md" FromRole="Team" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Database1Model.FK_Trainee_team" FromRole="Team" ToRole="User" />
+    <Property Type="Int32" Name="IsApproved" Nullable="false" />
+    <Property Type="String" Name="TeamName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="MTL_id" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Mobile" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Photo" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="JobDescription" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="user_type" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Projects" Relationship="Database1Model.FK_user_proj" FromRole="User" ToRole="Project" />
+    <NavigationProperty Name="Teams" Relationship="Database1Model.FK_md" FromRole="User" ToRole="Team" />
+    <NavigationProperty Name="Teams1" Relationship="Database1Model.FK_Trainee_team" FromRole="User" ToRole="Team" />
+  </EntityType>
+  <Association Name="FK_user_proj">
+    <End Role="User" Type="Database1Model.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Project" Type="Database1Model.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_md">
+    <End Role="User" Type="Database1Model.User" Multiplicity="1" />
+    <End Role="Team" Type="Database1Model.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="MD_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trainee_team">
+    <End Role="User" Type="Database1Model.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Team" Type="Database1Model.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="Trainee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,127 @@
+﻿@model Task.Models.Team
+
+@{
+    ViewBag.Title = "CreateTeam";
+}
+
+<h2>CreateTeam</h2>
+<style>
+    table, tr, th, td {
+    padding:5px;
+    margin:5px;
+    border : 1px solid #ff00dc;
+    }
+</style>
+<h1>Users</h1>
+
+
+@if (ViewBag.Userss != null)
+{
+    <table>
+    <tr>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>User Role</th>
+    </tr>
+ @foreach (var item in ViewBag.Userss)
+{    <tr>
+        <td> @item.ID </td>
+        <td> @item.FirstName @item.LastName </td>
+        <td>
+        @if(item.user_type == 4 ){
+            <p>Trainee</p>
+            }
+           @if(item.user_type == 2){
+           <p>Market Director</p>
+           }
+        </td>
+    </tr>
+}        
+</table>
+}
+
+<h1>Projects</h1>
+
+@if (ViewBag.Projs != null)
+{
+<table>
+    <tr>
+        <th> Project ID </th>
+        <th> Project Title </th>
+        <th> Project Description </th>
+        <th> Project Status </th>
+    </tr>
+@foreach (var item2 in ViewBag.Projs) {
+    <tr>
+        <td>
+           @item2.ID 
+        </td>
+        <td>
+            @item2.Title
+        </td>
+        <td>
+            @item2.Description
+        </td>
+        <td>
+          @if(item2.Status == 0 ){
+            <p>On Progress</p>
+            }
+           @if(item2.Status == 1){
+           <p>Delivered</p>
+           }
+        </td>
+    </tr>
+}
+
+</table>
+}
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Team</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Trainee_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Trainee_id)
+            @Html.ValidationMessageFor(model => model.Trainee_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MD_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MD_id)
+            @Html.ValidationMessageFor(model => model.MD_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Proj_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Proj_id)
+            @Html.ValidationMessageFor(model => model.Proj_id)
+        </div>
+
+        <div class="editor-field">
+            <input type="hidden" name="IsApproved" value="0" />
+            @*Html.HiddenFor(m=>m.IsApproved,new{IsApproved=0})*@
+            @Html.ValidationMessageFor(model => model.IsApproved)
+        </div>
+
+        <p>
+            <input type="submit" value="Create Team" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

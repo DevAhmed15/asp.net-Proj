@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Task.Models.Project>
+
+@{
+    ViewBag.Title = "listProj";
+}
+<style>
+    tr, td, th {
+    margin:30px;
+    padding:30px;
+    height:100px;
+    }
+</style>
+<div class="container">
+<h2> Projects</h2>
+    <hr />
+    <br />
+    @if (Model.Count() > 0){
+<table class="table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            Written By
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeadLine)
+        </th>
+        <th>Controls</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+          @if(item.Status == 0 ){
+            <p>On Progress</p>
+            }
+           @if(item.Status == 1){
+           <p>Delivered</p>
+           }
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeadLine)
+        </td>
+        <td>
+            @Html.ActionLink("Edit Project", "EditProj", new { id = item.ID }, new {@class="btn" }) 
+            <br />
+            @Html.ActionLink("Project Details", "DetailsProj","Customer",new { id=item.ID }, new {@class="btn" }) 
+            <br />
+            @Html.ActionLink("Delete Project", "DeleteProj", new { id=item.ID }, new {@class="btn" })
+        </td>
+    </tr>
+}
+</table>
+    }  
+     else{
+    <h2> There's No Projects</h2>
+    }
+    <br />
+    <br />
+     <br />
+    @Html.ActionLink("Return Back", "Index",null, new { @class ="btn btn-danger"})
+        <br /><br />
+    </div>

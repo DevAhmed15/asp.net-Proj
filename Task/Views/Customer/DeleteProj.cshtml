@@ -1,0 +1,35 @@
+﻿@model Task.Models.Project
+
+@{
+    ViewBag.Title = "Delete";
+}
+<style>
+    div {
+    font-size:x-large
+    }
+</style>
+<div class="container">
+
+<h2>Delete Project</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+    <div class="display-field">
+         @Html.DisplayNameFor(model => model.Title) : @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-field">
+         @Html.DisplayNameFor(model => model.Description) : @Html.DisplayFor(model => model.Description)
+    </div>
+<div class="display-field">
+      @Html.DisplayNameFor(model => model.User.FirstName) : @Html.DisplayFor(model => model.User.FirstName)
+    </div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit"class="btn btn-info" value="Delete" />         
+         @Html.ActionLink("Cancel", "all",null, new { @class ="btn btn-info"})
+    <br /><br /><br />
+    <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-success"> Return Back </a>
+       <br /><br /><br /> </p>
+}
